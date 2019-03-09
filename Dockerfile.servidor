@@ -1,0 +1,12 @@
+FROM maven:3.5-jdk-8-alpine as build
+
+COPY prueba_servidor /src/servidor
+
+WORKDIR /src
+
+RUN cd servidor && mvn clean package
+
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+COPY --from=build /src/servidor/target/prueba_servidor-0.0.1-SNAPSHOT.jar /app
+CMD java -jar prueba_servidor-0.0.1-SNAPSHOT.jar
