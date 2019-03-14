@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "gamesinfodb"
+  labels:
+    app: {{ include "GamesInfo.name" . }}
+    chart: {{ include "GamesInfo.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+      name: mysqlport
+  selector:
+    app: {{ include "GamesInfo.name" . }}
+    release: {{ .Release.Name }}

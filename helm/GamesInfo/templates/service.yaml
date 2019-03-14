@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "GamesInfo.fullname" . }}
+  labels:
+    app: {{ include "GamesInfo.name" . }}
+    chart: {{ include "GamesInfo.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ include "GamesInfo.name" . }}
+    release: {{ .Release.Name }}
