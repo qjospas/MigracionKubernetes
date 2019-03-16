@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "gamesinfo-mail"
+  labels:
+    app: "gamesinfo-mail" 
+    release: "gamesinfo-mail-0.1.0" 
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: mailport
+  selector:
+    app: "gamesinfo-mail" 
+    release: "gamesinfo-mail-0.1.0" 

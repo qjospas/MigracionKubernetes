@@ -6,12 +6,16 @@ replicaCount: 1
 
 image:
   repository: jpastorr/servidor
-  tag: latest
+  tag: 0.2.0
   pullPolicy: IfNotPresent
 
 mysql_image:
   repository: jpastorr/gamesinfo_mysql
-  tag: latest
+  tag: 0.1.0
+  
+mail_image:
+  repository: jpastorr/gamesinfo_mail
+  tag: 0.1.0
 
 nameOverride: ""
 fullnameOverride: ""

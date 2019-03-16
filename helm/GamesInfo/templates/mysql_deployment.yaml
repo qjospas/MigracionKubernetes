@@ -3,24 +3,22 @@ kind: Deployment
 metadata:
   name: "gamesinfodb" 
   labels:
-    app: {{ include "GamesInfo.name" . }}
-    chart: {{ include "GamesInfo.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: "gamesinfodb" 
+    release: "gamesinfodb-0.1.0" 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "GamesInfo.name" . }}
-      release: {{ .Release.Name }}
+      app: "gamesinfodb" 
+      release: "gamesinfodb-0.1.0" 
   template:
     metadata:
       labels:
-        app: {{ include "GamesInfo.name" . }}
-        release: {{ .Release.Name }}
+        app: "gamesinfodb" 
+        release: "gamesinfodb-0.1.0" 
     spec:
       containers:
-        - name: {{ .Chart.Name }}
+        - name: "gamesinfodb"
           image: "{{ .Values.mysql_image.repository }}:{{ .Values.mysql_image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
@@ -30,17 +28,3 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "gugus"
-          resources:
-{{ toYaml .Values.resources | indent 12 }}
-    {{- with .Values.nodeSelector }}
-      nodeSelector:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.affinity }}
-      affinity:
-{{ toYaml . | indent 8 }}
-    {{- end }}
-    {{- with .Values.tolerations }}
-      tolerations:
-{{ toYaml . | indent 8 }}
-    {{- end }}

@@ -3,10 +3,8 @@ kind: Service
 metadata:
   name: "gamesinfodb"
   labels:
-    app: {{ include "GamesInfo.name" . }}
-    chart: {{ include "GamesInfo.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
+    app: "gamesinfodb" 
+    release: "gamesinfodb-0.1.0" 
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -15,5 +13,5 @@ spec:
       protocol: TCP
       name: mysqlport
   selector:
-    app: {{ include "GamesInfo.name" . }}
-    release: {{ .Release.Name }}
+    app: "gamesinfodb" 
+    release: "gamesinfodb-0.1.0" 

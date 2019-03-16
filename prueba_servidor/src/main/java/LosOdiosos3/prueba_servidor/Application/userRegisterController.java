@@ -75,7 +75,7 @@ public class userRegisterController {
 		
 		// ------------------------------------- MAIL SERVICE ------------------------------------------
 		// Se manda al puerto del mail service la información
-		String urlFinal = "http://localhost:8080/mail";
+		String urlFinal = "http://gamesinfo-mail:8080/mail";
 		// IP del servicio mail
 		//String urlFinal = "http://192.168.33.11:8080/mail";
 		//String urlFinal = "http://192.168.33.14:8080/mail";

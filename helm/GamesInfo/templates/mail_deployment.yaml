@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: "gamesinfo-mail" 
+  labels:
+    app: "gamesinfo-mail" 
+    release: "gamesinfo-mail-0.1.0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "gamesinfo-mail" 
+      release: "gamesinfo-mail-0.1.0"
+  template:
+    metadata:
+      labels:
+        app: "gamesinfo-mail" 
+        release: "gamesinfo-mail-0.1.0"
+    spec:
+      containers:
+        - name: "gamesinfo-mail" 
+          image: "{{ .Values.mail_image.repository }}:{{ .Values.mail_image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
