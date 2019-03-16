@@ -7,6 +7,7 @@ WORKDIR /src
 RUN cd servidor && mvn clean package
 
 FROM openjdk:8-jre-alpine
+//RUN apk add --no-cache busybox
 WORKDIR /app
 COPY --from=build /src/servidor/target/prueba_servidor-0.0.1-SNAPSHOT.jar /app
 CMD java -jar prueba_servidor-0.0.1-SNAPSHOT.jar
