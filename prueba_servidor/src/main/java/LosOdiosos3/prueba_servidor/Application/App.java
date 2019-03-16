@@ -37,9 +37,9 @@ public class App {
 	    Config config = new Config();
 	    JoinConfig joinConfig = config.getNetworkConfig().getJoin();	    
 	    joinConfig.getMulticastConfig().setEnabled(false);
-		joinConfig.getTcpIpConfig().addMember( "127.0.0.1" )
-	    //joinConfig.getTcpIpConfig().addMember( "192.168.33.13" ).addMember( "168.192.33.10" )
-	    .setEnabled( true );
+		joinConfig.getKubernetesConfig().setEnabled( true )
+		.setProperty("namespace", "default");
+	   
 	    return config;
     }
     

@@ -1,0 +1,11 @@
+kind: Service
+metadata:
+  name: hazelcast-service
+spec:
+  clusterIP: None
+  selector:
+    app: {{ include "GamesInfo.name" . }}
+  ports:
+  - protocol: TCP
+    port: 5701
+    targetPort: 5701
