@@ -17,6 +17,10 @@ spec:
         app: "gamesinfodb" 
         release: "gamesinfodb-0.1.0" 
     spec:
+      volumes:
+       - name: gamesinfo-pv-storage
+         persistentVolumeClaim:
+           claimName: gamesinfo-pv-claim
       containers:
         - name: "gamesinfodb"
           image: "{{ .Values.mysql_image.repository }}:{{ .Values.mysql_image.tag }}"
@@ -28,3 +32,6 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSWORD
               value: "gugus"
+          volumeMounts:
+            - mountPath: "/var/lib/mysql"
+              name: gamesinfo-pv-storage
