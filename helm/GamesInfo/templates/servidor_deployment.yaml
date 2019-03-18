@@ -31,16 +31,6 @@ spec:
             - name: http
               containerPort: 8543
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-              scheme: HTTPS
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-              scheme: HTTPS
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}
